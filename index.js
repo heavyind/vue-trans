@@ -2,7 +2,7 @@ import transStore from "./lib/store";
 import Trans from "./lib/Trans";
 import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
-export { default as transProps } from "./lib/mixinTransProps";
+export { default as transProps } from "./util/transProps";
 
 
 export default {
