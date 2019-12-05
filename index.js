@@ -4,6 +4,7 @@ import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
 export { default as transProps } from "./lib/mixinTransProps";
 
+
 export default {
   install(Vue, store) {
 
