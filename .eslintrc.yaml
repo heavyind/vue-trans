@@ -1,0 +1,25 @@
+
+parserOptions:
+  parser: babel-eslint
+  ecmaVersion: 6
+  sourceType: module
+rules:
+  semi: 2
+  curly: 2
+  yoda: 2
+  no-multi-spaces: 2
+  func-style:
+    - error
+    - expression
+    - allowArrowFunctions: true
+  comma-dangle:
+    - error
+    - never
+  quotes:
+    - error
+    - double
+  indent: 
+    - error
+    - 2
+extends:
+  'plugin:vue/essential'

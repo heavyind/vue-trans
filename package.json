@@ -1,0 +1,26 @@
+{
+  "name": "@heavyind/vue-trans",
+  "version": "0.0.1",
+  "description": "Page subcomponent transition effects for Vue apps",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heavyind/vue-trans.git"
+  },
+  "keywords": [
+    "vue",
+    "vuex"
+  ],
+  "author": "Heavy Industries",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heavyind/vue-trans/issues"
+  },
+  "homepage": "https://github.com/heavyind/vue-trans#readme"
+}
