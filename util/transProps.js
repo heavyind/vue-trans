@@ -21,6 +21,11 @@ export default {
       required: false,
       default: null
     },
+    easing: {
+      type: [String, Object, null],
+      required: false,
+      default: null
+    },
     beforeEnter: {
       type: Function,
       required: false
