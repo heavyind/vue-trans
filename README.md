@@ -1,8 +1,10 @@
 # Heavy Industries `vue-trans`
 
-## What this is
+A Vue plugin to help transition elements in and out upon page transition.
 
-You're looking at a Vue plugin to help transition elements in and out upon page transition.
+## Warning
+
+This package is very alpha. It works, and it's fun to play with, but it needs documentation and testing. Use at your own risk.
 
 ## Why this is
 
