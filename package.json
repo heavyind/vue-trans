@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "description": "Page subcomponent transition effects for Vue apps",
   "main": "dist/vue-trans.cjs.js",
-  "unpkg": "dist/vue-trans.js",
+  "module": "dist/vue-trans.esm.js",
+  "unpkg": "dist/vue-trans.umd.js",
   "directories": {
     "lib": "lib"
   },
