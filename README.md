@@ -27,7 +27,7 @@ yarn add @heavyind/vue-trans
 Via unpkg:
 
 ```
-<script src="https://unpkg.com/@heavyind/vue-trans@0.0.3/dist/vue-trans.umd.js"></script>
+<script src="http://unpkg.com/@heavyind/vue-trans"></script>
 ```
 
 ## Usage
