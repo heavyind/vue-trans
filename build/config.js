@@ -1,25 +1,40 @@
-const webpackMerge = require("webpack-merge");
-const isProduction = process.env.NODE_ENV === "production";
-const vjs = require("./part.vjs.js");
-const cjs = require("./part.cjs.js");
+const path = require("path");
 
+const makePath = (f) => {
+  return path.join("./dist/", `vue-trans.${f}.js`);
+};
 
-const config = {
-  entry: "./index.js",
-  mode: isProduction ? "production" : "development",
-  devtool: isProduction ? false : "source-map",
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
-      }
-    ]
+const base = {
+  input: "./index.js"
+};
+
+const cjs = {
+  output: {
+    file: makePath("cjs"),
+    format: "cjs"
+  }
+};
+
+const umd = {
+  output: {
+    file: makePath("umd"),
+    format: "umd",
+    name: "VueTransPlugin",
+    globals: {
+      VueTrans: "VueTransPlugin.VueTrans"
+    }
+  }
+};
+
+const esm = {
+  output: {
+    file: makePath("esm"),
+    format: "esm"
   }
 };
 
 module.exports = [
-  webpackMerge(config, vjs),
-  webpackMerge(config, cjs)
+  { ...base, ...cjs },
+  { ...base, ...umd },
+  { ...base, ...esm }
 ];
