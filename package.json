@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "test",
-    "watch": "rimraf dist && webpack --config ./build/config.js --watch --watch-poll",
-    "build": "rimraf dist && NODE_ENV=production webpack --config ./build/config.js"
+    "watch": "rimraf dist && rollup -c ./build/config.js --watch",
+    "build": "rimraf dist && rollup -c ./build/config.js"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,6 @@
     "@babel/preset-env": "^7.7.4",
     "babel-loader": "^8.0.6",
     "rimraf": "^3.0.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-merge": "^4.2.2"
+    "rollup": "^1.27.8"
   }
 }
