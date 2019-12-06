@@ -2,14 +2,14 @@ import transStore from "./lib/store";
 import Trans from "./lib/Trans";
 import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
-export { default as transProps } from "./util/transProps";
+import transProps from "./util/transProps";
 
 
-export const VueTrans = {
+export default {
   install(Vue, store) {
 
     if (store === undefined) {
-      throw new Error("Trans depends on Vuex. Please pass a store into the plugin.");
+      throw new Error("VueTrans depends on Vuex. Please pass a store into the plugin.");
     }
 
     store.registerModule("trans", transStore);
@@ -23,5 +23,8 @@ export const VueTrans = {
     Vue.component("trans", Trans(Vue));
     Vue.component("trans-link", TransLink(Vue));
     Vue.component("trans-router-view", TransRouterView(Vue));
-  }
+  },
+
+  // For convenience
+  transProps
 };
