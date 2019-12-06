@@ -1,7 +1,7 @@
 const webpackMerge = require("webpack-merge");
 const isProduction = process.env.NODE_ENV === "production";
-const vjs = require("./config.vjs.js");
-const cjs = require("./config.cjs.js");
+const vjs = require("./part.vjs.js");
+const cjs = require("./part.cjs.js");
 
 
 const config = {

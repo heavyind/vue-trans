@@ -5,7 +5,7 @@ import TransRouterView from "./lib/TransRouterView";
 export { default as transProps } from "./util/transProps";
 
 
-export default {
+export const VueTrans = {
   install(Vue, store) {
 
     if (store === undefined) {
