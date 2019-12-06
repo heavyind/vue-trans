@@ -2,8 +2,8 @@
   "name": "@heavyind/vue-trans",
   "version": "0.0.2",
   "description": "Page subcomponent transition effects for Vue apps",
-  "main": "index.js",
-  "unpkg": "dist/VueTrans.min.js",
+  "main": "dist/vue-trans.cjs.js",
+  "unpkg": "dist/vue-trans.js",
   "directories": {
     "lib": "lib"
   },
