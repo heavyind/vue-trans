@@ -19,10 +19,7 @@ const umd = {
   output: {
     file: makePath("umd"),
     format: "umd",
-    name: "VueTransPlugin",
-    globals: {
-      VueTrans: "VueTransPlugin.VueTrans"
-    }
+    name: "VueTrans"
   }
 };
 
