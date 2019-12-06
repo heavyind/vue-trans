@@ -1,6 +1,6 @@
 {
   "name": "@heavyind/vue-trans",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Page subcomponent transition effects for Vue apps",
   "main": "dist/vue-trans.cjs.js",
   "module": "dist/vue-trans.esm.js",
