@@ -113,9 +113,12 @@ Currently, `<trans>` components must exist in some parent element of the page co
 
 ## How it works from 10,000 feet
 
-Vue offers `<transitions>`s that can be applied to the `<router-view>` with an optional explicit `duration` prop that, given no styling, allows the route view to simply remain in-DOM until it times out. Imagine this transition's leave duration to `500ms', one can delay overarching route transitions, giving subcomponents enough time to animate their leave transitions. Easy!
+Vue offers `<transitions>`s that can be applied to the `<router-view>` with an optional explicit `duration` prop that, given no styling, allows the route view to simply remain in-DOM until it times out. So you set the leave duration to *n* milliseconds and now you've delayed overarching route transitions, giving subcomponents enough time to animate their leave transitions. Easy enough, right?
 
-Except not. How long, for instance, should the leave duration of the transition on `<router-view>` be, when subcomponents can have arbitrary leave durations? Ideally, we'd set it to the same duration as the longest leave duration of any subcomponent on a given page. And what if we want to do something like override the value we just calculated in special circumstances, for instance for a particular link? It can get very messy very fast.
+Well, no. How long, for instance, should the leave duration of the transition on `<router-view>` be, when subcomponents can have arbitrary leave durations? Ideally, we'd set it to the same duration as the longest leave duration of any subcomponent on a given page. And what if we want to do something arbitrary like override the value we just calculated in special circumstances, for instance for a particular link? It can get very messy very fast.
+
+VueTrans allows you to wrap your elements in special components called `<trans>`, whose durations (either as props or within CSS) are sniffed and then logged. When navigation occurs, the longest logged duration is used for the delay on `<trans-router-view>` (a thin wrapper on `<router-view>`). You can also set explicit durations per link, and even make your transitions more declarative than their core Vue counterparts by simply specifying the transitioning property within CSS and then attacing things like easing to the `<trans>` component on an ad-hoc basis.
+
 
 
 ## License
