@@ -1,6 +1,6 @@
 {
   "name": "@heavyind/vue-trans",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Page subcomponent transition effects for Vue apps",
   "main": "dist/vue-trans.cjs.js",
   "module": "dist/vue-trans.esm.js",
@@ -28,9 +28,6 @@
   },
   "homepage": "https://github.com/heavyind/vue-trans#readme",
   "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "babel-loader": "^8.0.6",
     "rimraf": "^3.0.0",
     "rollup": "^1.27.8"
   }
