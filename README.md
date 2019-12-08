@@ -1,4 +1,4 @@
-# Heavy Industries `vue-trans`
+vy Industries `vue-trans`
 
 A Vue plugin to help transition elements in and out upon page navigation. Depends on Vue Router and Vuex.
 
@@ -123,3 +123,4 @@ Here's how VueTrans solves this: when a `<trans-link>` is clicked, navigation is
 ## License
 
 MIT
+
