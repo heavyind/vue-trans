@@ -8,7 +8,7 @@ import transProps from "./util/transProps";
 export default {
   install(Vue, store) {
 
-    if (store === undefined) {
+    if (typeof store === "undefined") {
       throw new Error("VueTrans depends on Vuex. Please pass a store into the plugin.");
     }
 
