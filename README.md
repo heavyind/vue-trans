@@ -119,6 +119,7 @@ Well, no. First of all, there's a sequencing issue: by this time, Vue has alread
 
 Here's how VueTrans solves this: when a `<trans-link>` is clicked, navigation is deferred and `<trans>` components are notified that they'll have to start leaving. This gives them a window during which to start their CSS transitions, which are honored in-DOM even after their VNodes are pruned. Next the transition durations of elements wrapped in `<trans>` components are sniffed and logged. The max of these durations is then set as the explicit duration of the `<transition>` over `<router-view>` within the wrapper component `<trans-router-view>`. If explicit durations are set on `<trans>` components, these override sniffed durations. At last, navigation is begun, with everything in its right place for a smooth page transition out. 
 
+
 ## License
 
 MIT
