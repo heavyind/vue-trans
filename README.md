@@ -89,11 +89,11 @@ Within `<style>`:
 </style>
 ```
 
-You can also set durations within CSS; they'll be sniffed automatically to defer the route transition. It's a giant win for reusability, though, to leave styles such that they simply declare what property you'd like to transition (here `opacity`), and leave the timing to each `<trans>`. All `duration` values are in milliseconds, and can be specified by an object: `{ enter: n1, leave: n2 }`. If just a number is passed (e.g., `:duration="200"`), this value is used for both `enter` and `leave`.
+You can also set durations within CSS; they'll be sniffed automatically to defer the route transition. It's a giant win for reusability, though, to author styles such that they simply declare what property you'd like to transition (here `opacity`), and leave the timing to each `<trans>`. Note that all `duration` values are in milliseconds, and can be specified by an integer as well as an object: `{ enter: n1, leave: n2 }`. If an integer is passed (e.g., `:duration="200"`), this value is used for both `enter` and `leave`.
 
 ---
 
-A note on initializing: Usage without initializing is undefined, and it notably breaks configuration options like `showOnce`, which allows you to transition an element in only once per instance of the app (think global navigation headers). It's not called for you within the plugin because You might want to defer it until, say, a loading screen has finished, so that transitions react only after the main app content has been furnished.
+*A note on initializing: Usage without initializing is undefined, and it notably breaks configuration options like `showOnce`, which allows you to transition an element in only once per instance of the app (think global navigation headers). It's not called for you within the plugin because You might want to defer it until, say, a loading screen has finished, so that transitions react only after the main app content has been furnished.
 
 ## Building for development
 
@@ -113,12 +113,11 @@ Currently, `<trans>` components must exist in some parent element of the page co
 
 ## How it works from 10,000 feet
 
-Vue offers `<transitions>`s that can be applied to the `<router-view>` with an optional explicit `duration` prop that, given no styling, allows the route view to simply remain in-DOM until it times out. So you set the leave duration to *n* milliseconds and now you've delayed overarching route transitions, giving subcomponents enough time to animate their leave transitions. Easy enough, right?
+Say you want to create a leave animation on particular sub-components in your app (while keeping its architecture sane). You might be aware that Vue offers `<transition>` components that can be applied to `<router-view>`. You might also know that there's an optional explicit `duration` prop that, given no styling, allows the route view to simply remain in-DOM until it times out. So you imagine you can set the leave duration here to *n* milliseconds in order to delay overarching route transitions, giving sub-components enough time to animate their leave transitions. Easy enough, right?
 
-Well, no. How long, for instance, should the leave duration of the transition on `<router-view>` be, when subcomponents can have arbitrary leave durations? Ideally, we'd set it to the same duration as the longest leave duration of any subcomponent on a given page. And what if we want to override the sniffed value with a hardcoded one, for instance for a particular link? It can get very messy very fast.
+Well, no. First of all, there's a sequencing issue: by this time, Vue has already pruned the route view from the virtual DOM, so it won't propagate any flags down to child components to tell them it's time to leave. Once you solve that issue, you'll have to sort out how long the leave duration of the transition on `<router-view>` should be when sub-components can have arbitrary values. Ideally, we'd set it to the same duration as the longest leave duration of any sub-component on a given page, but how? And what if we want to override *that* value with a hardcoded one in particular instances, like when we click a special link? It can get very messy very fast.
 
-VueTrans allows you to wrap your elements in special components called `<trans>`, whose durations (either as props or within CSS) are sniffed and then logged. When navigation occurs, the longest logged duration is used for the delay on `<trans-router-view>` (a thin wrapper on `<router-view>`). You can also set explicit durations per link, and even make your transitions more declarative than their core Vue counterparts by simply specifying the transitioning property within CSS and then attaching things like easing to the `<trans>` component on an ad-hoc basis.
-
+Here's how VueTrans solves this: when a `<trans-link>` is clicked, navigation is deferred and `<trans>` components are notified that they'll have to start leaving. This gives them a window during which to start their CSS transitions, which are honored in-DOM even after their VNodes are pruned. Next the transition durations of elements wrapped in `<trans>` components are sniffed and logged. The max of these durations is then set as the explicit duration of the `<transition>` over `<router-view>` within the wrapper component `<trans-router-view>`. If explicit durations are set on `<trans>` components, these override sniffed durations. At last, navigation is begun, with everything in its right place for a smooth page transition out. 
 
 
 ## License
