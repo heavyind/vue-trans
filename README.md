@@ -1,4 +1,4 @@
-vy Industries `vue-trans`
+Heavy Industries `vue-trans`
 
 A Vue plugin to help transition elements in and out upon page navigation. Depends on Vue Router and Vuex.
 
