@@ -4,6 +4,7 @@ import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
 import transProps from "./util/transProps";
 import { cfgDefault } from "./util/config";
+import { createTransMixin } from "./lib/mixin";
 import * as e from "./util/e";
 
 
@@ -22,17 +23,9 @@ export default {
 
     cfg.store.registerModule(cfg.storeNamespace, transStore);
 
-    Vue.mixin({
-      computed: {
-        [`${cfg.mixinNamespace}`] () {
-          return {
-            initialize: () => {
-              cfg.store.dispatch(`${cfg.storeNamespace}/initialize`);
-            }
-          };
-        }
-      }
-    });
+    if (cfg.mixin) {
+      Vue.mixin(createTransMixin(cfg));
+    }
 
     Vue.component(cfg.transComponentName, Trans(Vue));
     Vue.component(cfg.transLinkComponentName, TransLink(Vue));
