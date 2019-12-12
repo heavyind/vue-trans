@@ -27,9 +27,9 @@ export default {
       Vue.mixin(createTransMixin(cfg));
     }
 
-    Vue.component(cfg.transComponentName, Trans(Vue));
-    Vue.component(cfg.transLinkComponentName, TransLink(Vue));
-    Vue.component(cfg.transRouterViewComponentName, TransRouterView(Vue));
+    Vue.component(cfg.transComponentName, Trans(Vue, cfg));
+    Vue.component(cfg.transLinkComponentName, TransLink(Vue, cfg));
+    Vue.component(cfg.transRouterViewComponentName, TransRouterView(Vue, cfg));
   },
 
   // For convenience
