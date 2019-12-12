@@ -3,7 +3,7 @@ import Trans from "./lib/Trans";
 import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
 import transProps from "./util/transProps";
-import cfgDefault from "./util/config";
+import { cfgDefault } from "./util/config";
 import * as e from "./util/e";
 
 
@@ -15,7 +15,7 @@ export default {
     }
 
     if (typeof _cfg.store === "undefined") {
-      throw new Error(e.storeUndefined);
+      throw new Error(e.cfgStoreUndefined);
     }
 
     const cfg = { ...cfgDefault, ..._cfg };
