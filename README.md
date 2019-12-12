@@ -72,7 +72,7 @@ new Vue ({
 });
 ```
 
-3. **Replace** First, replace your `<router-view>` with the now-global `<trans-router-view>`. For any links that you want to use to trigger a route transition, use `<trans-link>` instead of `<router-link>`.
+3. **Replace** First, replace your `<router-view>` with the now-global `<trans-view>`. For any links that you want to use to trigger a route transition, use `<trans-link>` instead of `<router-link>`.
 
 4. **Write a trans** Use the global `<trans>` component to wrap the content that you'd like to transition in and out. Here's an example of what that might look like.
 
@@ -139,7 +139,7 @@ VueTrans configuration requires certain things like your Vuex store, and allows 
   storeNamespace: "trans",
   transComponentName: "trans",
   transLinkComponentName: "trans-link",
-  transRouterViewComponentName: "trans-router-view"
+  transViewComponentName: "trans-view"
 }
 
 ```
@@ -170,9 +170,9 @@ The global name of the Trans component. Defaults to `"trans"` (e.g., `<trans>`).
 
 The global name of the TransLink component. Defaults to `"trans-link"` (e.g., `<trans-link>`).
 
-`transRouterViewComponentName`
+`transViewComponentName`
 
-The global name of the TransRouterView component. Defaults to `"trans-router-view"` (e.g., `<trans-router-view>`).
+The global name of the TransView component. Defaults to `"trans-view"` (e.g., `<trans-view>`).
 
 ## Building for development
 
