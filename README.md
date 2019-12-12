@@ -58,9 +58,7 @@ Vue.use(VueTrans, { store, mixin: true });
 
 Leave the `mixin` flag set for now, we'll talk more about it later.
 
-2. **Initialize**
-
-In most cases you just want to call the built-in `initialize` function in your main App component's `mounted` hook*:
+2. **Initialize** In most cases you just want to call the built-in `initialize` function in your main App component's `mounted` hook*:
 
 ```
 new Vue ({
