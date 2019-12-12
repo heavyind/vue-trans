@@ -151,11 +151,11 @@ VueTrans configuration requires your Vuex store and allows for configuration of 
 
 `mixin` *Boolean*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whether or not you would like to set a global namespace (`mixinNamespace`) to alias certain properties and actions.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whether or not you would like to include a global mixin to alias certain properties and actions (via `mixinNamespace`).
 
 `mixinNamespace` *String*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The name bound globally to your components should. Defaults to `"$trans"`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The name bound globally to your components to alias certain properties and actions should `mixin` be set to `true` in your configuration object. Defaults to `"$trans"`.
 
 `storeNamespace` *String*
 
