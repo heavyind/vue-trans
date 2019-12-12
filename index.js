@@ -29,7 +29,7 @@ export default {
 
     Vue.component(cfg.transComponentName, Trans(Vue, cfg));
     Vue.component(cfg.transLinkComponentName, TransLink(Vue, cfg));
-    Vue.component(cfg.transRouterViewComponentName, TransRouterView(Vue, cfg));
+    Vue.component(cfg.transViewComponentName, TransRouterView(Vue, cfg));
   },
 
   // For convenience

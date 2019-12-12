@@ -7,5 +7,5 @@ export const cfgDefault = {
   storeNamespace: "trans",
   transComponentName: "trans",
   transLinkComponentName: "trans-link",
-  transRouterViewComponentName: "trans-router-view"
+  transViewComponentName: "trans-view"
 };
