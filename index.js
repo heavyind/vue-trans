@@ -3,26 +3,40 @@ import Trans from "./lib/Trans";
 import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
 import transProps from "./util/transProps";
+import cfgDefault from "./util/config";
+import * as e from "./util/e";
 
 
 export default {
-  install(Vue, store) {
+  install(Vue, _cfg) {
 
-    if (typeof store === "undefined") {
-      throw new Error("VueTrans depends on Vuex. Please pass a store into the plugin.");
+    if (typeof _cfg === "undefined") {
+      throw new Error(e.cfgUndefined);
     }
 
-    store.registerModule("trans", transStore);
+    if (typeof _cfg.store === "undefined") {
+      throw new Error(e.storeUndefined);
+    }
+
+    const cfg = { ...cfgDefault, ..._cfg };
+
+    cfg.store.registerModule(cfg.storeNamespace, transStore);
 
     Vue.mixin({
-      methods: {
-        transInitialize: () => store.dispatch("trans/initialize")
-      } 
+      computed: {
+        [`${cfg.mixinNamespace}`] () {
+          return {
+            initialize: () => {
+              cfg.store.dispatch(`${cfg.storeNamespace}/initialize`);
+            }
+          };
+        }
+      }
     });
 
-    Vue.component("trans", Trans(Vue));
-    Vue.component("trans-link", TransLink(Vue));
-    Vue.component("trans-router-view", TransRouterView(Vue));
+    Vue.component(cfg.transComponentName, Trans(Vue));
+    Vue.component(cfg.transLinkComponentName, TransLink(Vue));
+    Vue.component(cfg.transRouterViewComponentName, TransRouterView(Vue));
   },
 
   // For convenience
