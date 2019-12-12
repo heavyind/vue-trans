@@ -4,7 +4,7 @@ A Vue plugin to help transition elements in and out upon page navigation. Depend
 
 ## Warning
 
-This package is very alpha. It works, and it's fun to play with, but it needs documentation and testing. Use at your own risk.
+This project works, and it's fun to play with, but it needs documentation and testing. Use at your own risk.
 
 ## Why?
 
@@ -116,12 +116,9 @@ export default {
   mixins: [createTransMixin(cfg)]
   // ...
 }
-
-The `cfg` object takes your `storeNamespace` and `mixinNamespace`. If you leave it blank, they'll default to `"trans"` and `"$trans"`, respectively.
-
 ```
 
-Alternatively, simply alias the necessary Vuex actions within the component you're using.
+The `cfg` object takes your `storeNamespace` and `mixinNamespace`. If you leave it blank, they'll default to `"trans"` and `"$trans"`, respectively. Alternatively, simply alias the necessary Vuex actions within the component you're using.
 
 ---
 
@@ -129,7 +126,11 @@ Alternatively, simply alias the necessary Vuex actions within the component you'
 
 ## Configuration
 
-VueTrans configuration requires your Vuex store and allows for configuration of other attributes. The default configuration object is as follows:
+VueTrans configuration requires your Vuex store and allows for configuration of other attributes.
+
+### Default configuration
+
+The default configuration object looks like this:
 
 ```
 { store: null,
@@ -140,8 +141,9 @@ VueTrans configuration requires your Vuex store and allows for configuration of 
   transLinkComponentName: "trans-link",
   transViewComponentName: "trans-view"
 }
-
 ```
+
+In most cases you'll likely only want to change `store` and `mixin`. The other options are there if you anticipate a naming collision between the default VueTrans namespaces and your project.
 
 ### Configuration in-depth 
 
@@ -187,7 +189,7 @@ This project uses Rollup.
 
 ## Caveats
 
-Currently, `<trans>` components must exist in some parent element of the page component they're being used in. For instance, in a SFC `<template>`, don't use `<trans>` as the top-level element. In a template string or render function for a page, just make sure it's wrapped in something else (e.g., `"<div><trans></trans></div>"`).
+Currently, `<trans>` components must exist in some parent element of the page component they're being used in. For instance, in a single file component's `<template>`, don't use `<trans>` as the top-level element. In a template string or render function for a page, just make sure it's wrapped in something else (e.g., `"<div><trans></trans></div>"`).
 
 ## How it works from 10,000 feet
 
