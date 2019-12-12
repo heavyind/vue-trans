@@ -1,6 +1,6 @@
 
 
-export default {
+export const transProps = {
   props: {
     name: {
       type: String,

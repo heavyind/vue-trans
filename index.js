@@ -1,8 +1,8 @@
-import transStore from "./lib/store";
 import Trans from "./lib/Trans";
 import TransLink from "./lib/TransLink";
 import TransRouterView from "./lib/TransRouterView";
-import transProps from "./util/transProps";
+import { transStore } from "./lib/store";
+import { transProps } from "./util/transProps";
 import { cfgDefault } from "./util/config";
 import { createTransMixin } from "./lib/mixin";
 import * as e from "./util/e";
