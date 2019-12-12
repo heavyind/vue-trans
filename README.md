@@ -88,6 +88,7 @@ Within `<style>`:
   opacity: 1;
   transition: opacity;
 }
+
 .fifo-enter {
   opacity: 0;
 }
