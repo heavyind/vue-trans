@@ -104,7 +104,7 @@ You can also set durations within CSS; they'll be sniffed automatically to defer
 
 ### Using with `{ mixin: false }`
 
-When you set `{ mixin: true }`, a global mixin is used to attach the `$trans` property to each of your Vue components. It is convenient, but set to `false` by default because this package intends to make no assumptions about your code. If you prefer not to use it, you may include them mixin on a per-component basis: 
+When you set `{ mixin: true }`, a global mixin is used to attach the `$trans` property to each of your Vue components. It is convenient, but set to `false` by default because this package intends to make no assumptions about your code. If you prefer not to use it, you may include the mixin on a per-component basis: 
 
 ```
 import { createTransMixin } from "@heavyind/vue-trans";
@@ -125,15 +125,14 @@ Alternatively, simply alias the necessary Vuex actions within the component you'
 
 ---
 
-*A note on initializing: Usage without initializing is undefined, and it notably breaks configuration options like `showOnce`, which allows you to transition an element in only once per instance of the app (think global navigation headers). It's not called for you within the plugin because You might want to defer it until, say, a loading screen has finished, so that transitions react only after the main app content has been furnished.
+*A note on initializing: Usage without initializing is undefined, and it notably breaks configuration options like `showOnce`, which allows you to transition an element in only once per instance of the app (think global navigation headers). It's not called for you within the plugin because you might want to defer it until, say, a loading screen has finished, so that transitions react only after the main app content has been furnished.
 
 ## Configuration
 
-VueTrans configuration requires certain things like your Vuex store, and allows for configuration of many other attributes. The default configuration object is as folows:
+VueTrans configuration requires your Vuex store and allows for configuration of other attributes. The default configuration object is as follows:
 
 ```
-{
-  store: null,
+{ store: null,
   mixin: false,
   mixinNamespace: "$trans",
   storeNamespace: "trans",
@@ -148,31 +147,31 @@ VueTrans configuration requires certain things like your Vuex store, and allows 
 
 `store` *Store*
 
-The store you intend to use.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The store you intend to use.
 
 `mixin` *Boolean*
 
-Whether or not you would like to set a global namespace (`mixinNamespace`) to alias certain properties and actions.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whether or not you would like to set a global namespace (`mixinNamespace`) to alias certain properties and actions.
 
-`mixinNamespace`
+`mixinNamespace` *String*
 
-The name bound globally to your components should. Defaults to `"$trans"`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The name bound globally to your components should. Defaults to `"$trans"`.
 
-`storeNamespace`
+`storeNamespace` *String*
 
-The namespace used within your store. It defaults to `"trans"`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The namespace used within your store. It defaults to `"trans"`.
 
-`transComponentName`
+`transComponentName` *String*
 
-The global name of the Trans component. Defaults to `"trans"` (e.g., `<trans>`).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The global name of the Trans component. Defaults to `"trans"` (e.g., `<trans>`). Must adhere to Vue's rules about component names.
 
-`transLinkComponentName`
+`transLinkComponentName` *String*
 
-The global name of the TransLink component. Defaults to `"trans-link"` (e.g., `<trans-link>`).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The global name of the TransLink component. Defaults to `"trans-link"` (e.g., `<trans-link>`). Must adhere to Vue's rules about component names.
 
-`transViewComponentName`
+`transViewComponentName` *String*
 
-The global name of the TransView component. Defaults to `"trans-view"` (e.g., `<trans-view>`).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The global name of the TransView component. Defaults to `"trans-view"` (e.g., `<trans-view>`). Must adhere to Vue's rules about component names.
 
 ## Building for development
 
