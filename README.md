@@ -53,16 +53,21 @@ console.log(VueTrans);
 1. **Install** After you have a reference to `VueTrans`, you're going to have to install it. It depends on Vuex, so you'll also need to pass your store in:
 
 ```
-Vue.use(VueTrans, myStore);
+Vue.use(VueTrans, { store, mixin: true });
 ```
 
-2. **Initialize** In most cases you just want to call the built-in `transInitialize` function in your main App component's `mounted` hook*:
+Leave the `mixin` flag set for now, we'll talk more about it later.
+
+2. **Initialize**
+
+In most cases you just want to call the built-in `initialize` function in your main App component's `mounted` hook*:
+
 ```
 new Vue ({
     el: "#app",
     //...
     mounted () {
-        this.transInitialize();
+        this.$trans.initialize();
     }
 });
 ```
@@ -80,20 +85,94 @@ Within `<template>`:
 Within `<style>`:
 ```
 .fifo-enter-active {
-    opacity: 1;
-    transition: opacity;
+  opacity: 1;
+  transition: opacity;
 }
 .fifo-enter {
-    opacity: 0;
+  opacity: 0;
+}
+
+.fifo-leave-active {
+  opacity: 0;
+  transition: opacity;
 }
 </style>
 ```
 
 You can also set durations within CSS; they'll be sniffed automatically to defer the route transition. It's a giant win for reusability, though, to author styles such that they simply declare what property you'd like to transition (here `opacity`), and leave the timing to each `<trans>`. Note that all `duration` values are in milliseconds, and can be specified by an integer as well as an object: `{ enter: n1, leave: n2 }`. If an integer is passed (e.g., `:duration="200"`), this value is used for both `enter` and `leave`.
 
+
+### Using with `{ mixin: false }`
+
+When you set `{ mixin: true }`, a global mixin is used to attach the `$trans` property to each of your Vue components. It is convenient, but set to `false` by default because this package intends to make no assumptions about your code. If you prefer not to use it, you may include them mixin on a per-component basis: 
+
+```
+import { createTransMixin } from "@heavyind/vue-trans";
+
+
+// Within your component
+export default {
+  // ...
+  mixins: [createTransMixin(cfg)]
+  // ...
+}
+
+The `cfg` object takes your `storeNamespace` and `mixinNamespace`. If you leave it blank, they'll default to `"trans"` and `"$trans"`, respectively.
+
+```
+
+Alternatively, simply alias the necessary Vuex actions within the component you're using.
+
 ---
 
 *A note on initializing: Usage without initializing is undefined, and it notably breaks configuration options like `showOnce`, which allows you to transition an element in only once per instance of the app (think global navigation headers). It's not called for you within the plugin because You might want to defer it until, say, a loading screen has finished, so that transitions react only after the main app content has been furnished.
+
+## Configuration
+
+VueTrans configuration requires certain things like your Vuex store, and allows for configuration of many other attributes. The default configuration object is as folows:
+
+```
+{
+  store: null,
+  mixin: false,
+  mixinNamespace: "$trans",
+  storeNamespace: "trans",
+  transComponentName: "trans",
+  transLinkComponentName: "trans-link",
+  transRouterViewComponentName: "trans-router-view"
+}
+
+```
+
+### Configuration in-depth 
+
+`store` *Store*
+
+The store you intend to use.
+
+`mixin` *Boolean*
+
+Whether or not you would like to set a global namespace (`mixinNamespace`) to alias certain properties and actions.
+
+`mixinNamespace`
+
+The name bound globally to your components should. Defaults to `"$trans"`.
+
+`storeNamespace`
+
+The namespace used within your store. It defaults to `"trans"`.
+
+`transComponentName`
+
+The global name of the Trans component. Defaults to `"trans"` (e.g., `<trans>`).
+
+`transLinkComponentName`
+
+The global name of the TransLink component. Defaults to `"trans-link"` (e.g., `<trans-link>`).
+
+`transRouterViewComponentName`
+
+The global name of the TransRouterView component. Defaults to `"trans-router-view"` (e.g., `<trans-router-view>`).
 
 ## Building for development
 
