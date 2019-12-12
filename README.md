@@ -97,7 +97,6 @@ Within `<style>`:
   opacity: 0;
   transition: opacity;
 }
-</style>
 ```
 
 You can also set durations within CSS; they'll be sniffed automatically to defer the route transition. It's a giant win for reusability, though, to author styles such that they simply declare what property you'd like to transition (here `opacity`), and leave the timing to each `<trans>`. Note that all `duration` values are in milliseconds, and can be specified by an integer as well as an object: `{ enter: n1, leave: n2 }`. If an integer is passed (e.g., `:duration="200"`), this value is used for both `enter` and `leave`.
