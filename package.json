@@ -28,7 +28,16 @@
   },
   "homepage": "https://github.com/heavyind/vue-trans#readme",
   "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
+    "@rollup/plugin-node-resolve": "^6.0.0",
     "rimraf": "^3.0.0",
-    "rollup": "^1.27.8"
+    "rollup": "^1.27.8",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel-minify": "^9.1.1"
+  },
+  "dependencies": {
+    "core-js": "^3.5.0"
   }
 }
