@@ -33,5 +33,6 @@ export default {
   },
 
   // For convenience
-  transProps
+  transProps,
+  createTransMixin
 };
