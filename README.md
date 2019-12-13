@@ -50,13 +50,13 @@ console.log(VueTrans);
 
 ### Putting it all together
 
-1. **Install** After you have a reference to `VueTrans`, you're going to have to install it. It depends on Vuex, so you'll also need to pass your store in:
+1. **Install** After you have a reference to `VueTrans`, you're going to have to install it. It depends on Vuex, so you'll also need to pass your store and router instances in. For the sake of this example, we're also going to set `mixin` to true:
 
 ```
-Vue.use(VueTrans, { store, mixin: true });
+Vue.use(VueTrans, { store, router, mixin: true });
 ```
 
-Leave the `mixin` flag set for now, we'll talk more about it later.
+We'll talk more about the mixin flag later.
 
 2. **Initialize** In most cases you just want to call the built-in `initialize` function in your main App component's `mounted` hook*:
 
@@ -100,7 +100,7 @@ Within `<style>`:
 You can also set durations within CSS; they'll be sniffed automatically to defer the route transition. It's a giant win for reusability, though, to author styles such that they simply declare what property you'd like to transition (here `opacity`), and leave the timing to each `<trans>`. Note that all `duration` values are in milliseconds, and can be specified by an integer as well as an object: `{ enter: n1, leave: n2 }`. If an integer is passed (e.g., `:duration="200"`), this value is used for both `enter` and `leave`.
 
 
-### Using with `{ mixin: false }`
+### Usage with `{ mixin: false }`
 
 When you set `{ mixin: true }`, a global mixin is used to attach the `$trans` property to each of your Vue components. It is convenient, but set to `false` by default because this package intends to make no assumptions about your code. If you prefer not to use it, you may include the mixin on a per-component basis: 
 
@@ -116,7 +116,7 @@ export default {
 }
 ```
 
-The `cfg` object takes your `storeNamespace` and `mixinNamespace`. If you leave it blank, they'll default to `"trans"` and `"$trans"`, respectively. Alternatively, simply alias the necessary Vuex actions within the component you're using.
+The `cfg` object takes your `storeNamespace` and `mixinNamespace`. If you don't pass a `cfg`, `storeNamespace` will default to `"trans"` and `mixinNamespace` will default to `"$trans"`. Alternatively, simply alias the necessary Vuex actions within the component you're using. For most applications you'll only need the `initialize` action, anyway.
 
 ---
 
@@ -132,6 +132,7 @@ The default configuration object looks like this:
 
 ```
 { store: null,
+  router: null,
   mixin: false,
   mixinNamespace: "$trans",
   storeNamespace: "trans",
@@ -141,35 +142,39 @@ The default configuration object looks like this:
 }
 ```
 
-In most cases you'll likely only want to change `store` and `mixin`. The other options are there if you anticipate a naming collision between the default VueTrans namespaces and your project.
+In most cases you'll likely only want to change `store`, `router`, and maybe `mixin`. The other options are there if you anticipate a naming collision between the default VueTrans namespaces and your project.
 
 ### Configuration in-depth 
 
 `store` *Store*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The store you intend to use.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The store instance you intend to use.
 
-`mixin` *Boolean*
+`router` *Router*
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The router instance you intend to use.
+
+`mixin` *Boolean*?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whether or not you would like to include a global mixin to alias certain properties and actions (via `mixinNamespace`).
 
-`mixinNamespace` *String*
+`mixinNamespace` *String*?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The name bound globally to your components to alias certain properties and actions should `mixin` be set to `true` in your configuration object. Defaults to `"$trans"`.
 
-`storeNamespace` *String*
+`storeNamespace` *String*?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The namespace used within your store. It defaults to `"trans"`.
 
-`transComponentName` *String*
+`transComponentName` *String*?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The global name of the Trans component. Defaults to `"trans"` (e.g., `<trans>`). Must adhere to Vue's rules about component names.
 
-`transLinkComponentName` *String*
+`transLinkComponentName` *String*?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The global name of the TransLink component. Defaults to `"trans-link"` (e.g., `<trans-link>`). Must adhere to Vue's rules about component names.
 
-`transViewComponentName` *String*
+`transViewComponentName` *String*?
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The global name of the TransView component. Defaults to `"trans-view"` (e.g., `<trans-view>`). Must adhere to Vue's rules about component names.
 
