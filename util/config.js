@@ -2,6 +2,7 @@
 
 export const cfgDefault = {
   store: null,
+  router: null,
   mixin: false,
   mixinNamespace: "$trans",
   storeNamespace: "trans",

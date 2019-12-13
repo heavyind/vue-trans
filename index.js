@@ -19,9 +19,21 @@ export default {
       throw new Error(e.cfgStoreUndefined);
     }
 
+    if (typeof _cfg.router === "undefined") {
+      throw new Error(e.cfgRouterUndefined);
+    }
+
     const cfg = { ...cfgDefault, ..._cfg };
 
-    cfg.store.registerModule(cfg.storeNamespace, transStore);
+    const store = cfg.store;
+    const router = cfg.router;
+
+    store.registerModule(cfg.storeNamespace, transStore);
+
+    cfg.router.beforeEach((to, from, next) => {
+      store.dispatch(`${cfg.storeNamespace}/hide`);
+      next();
+    });
 
     if (cfg.mixin) {
       Vue.mixin(createTransMixin(cfg));
