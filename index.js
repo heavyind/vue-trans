@@ -32,7 +32,8 @@ export default {
 
     cfg.router.beforeEach((to, from, next) => {
       store.dispatch(`${cfg.storeNamespace}/hide`);
-      next();
+      store.dispatch(`${cfg.storeNamespace}/setRoute`, { to, from });
+      Vue.nextTick(next);
     });
 
     if (cfg.mixin) {
