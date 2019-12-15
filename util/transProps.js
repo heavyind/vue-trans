@@ -12,17 +12,17 @@ export const transProps = {
       default: false
     },
     delay: {
-      type: [Number, Object, null],
+      type: [Number, Object],
       required: false,
       default: null
     },
     duration: {
-      type: [Number, Object, null],
+      type: [Number, Object],
       required: false,
       default: null
     },
     easing: {
-      type: [String, Object, null],
+      type: [String, Object],
       required: false,
       default: null
     },
