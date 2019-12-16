@@ -6,6 +6,11 @@ export const transProps = {
       type: String,
       required: false
     },
+    overrides: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
     initOnly: {
       type: Boolean,
       required: false,
