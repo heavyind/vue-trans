@@ -4,7 +4,7 @@ A Vue plugin to help transition elements in and out upon page navigation. Depend
 
 ## Warning
 
-This project works, and it's fun to play with, but it needs documentation and testing. Use at your own risk.
+This is the experimental branch of vue-trans. Some things may be broken. Use at your own risk.
 
 ## Why?
 
