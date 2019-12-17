@@ -2,10 +2,6 @@
 
 A Vue plugin to help transition elements in and out upon page navigation. Depends on Vue Router and Vuex.
 
-## Warning
-
-This project works, and it's fun to play with, but it needs documentation and testing. Use at your own risk.
-
 ## Why?
 
 Because it's tricky do to certain transitions—particularly leave transitions—without a little extra help. Vue's philosophy is that the route is the single source of truth for a given view. In principle, when the URL changes, the view must immediately update, leaving no time for fancy out-transition effects. Fortunately, it's *possible* with a little cleverness, and this plugin is designed to automate that cleverness away.
