@@ -11,6 +11,16 @@ export const transProps = {
       required: false,
       default: () => []
     },
+    state: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    keepAlive: {
+      type: Number,
+      required: false,
+      default: null
+    },
     initOnly: {
       type: Boolean,
       required: false,
